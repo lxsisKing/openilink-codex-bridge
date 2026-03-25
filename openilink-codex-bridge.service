@@ -1,0 +1,19 @@
+[Unit]
+Description=OpenILink Codex Bridge
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/projects/openilink-codex-bridge
+EnvironmentFile=/root/projects/openilink-codex-bridge/.env
+ExecStart=/usr/bin/node /root/projects/openilink-codex-bridge/dist/main.js
+Restart=always
+RestartSec=3
+User=root
+Group=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
